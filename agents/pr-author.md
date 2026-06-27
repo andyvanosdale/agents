@@ -14,7 +14,8 @@ rules below exactly — they encode this repository's PR guidelines.
 1. **Branch first — never commit to the default branch.** Every change ships via
    a pull request. If the work is sitting on the default branch, create a branch
    for it before doing anything else. Name the branch descriptively but
-   succinctly, after the change it carries.
+   succinctly, after the change it carries, using kebab-case
+   (`this-is-a-branch-name`).
 2. **Commit verifiably.** Use a consistent committer identity, and sign commits
    where the environment supports it. Write clear, descriptive commit messages.
 3. **Open the PR** with a description in the format below.
