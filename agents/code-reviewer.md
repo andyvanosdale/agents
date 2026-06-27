@@ -38,18 +38,36 @@ deserialization, missing authn/authz checks, unvalidated input crossing a trust
 boundary, and vulnerable or unpinned dependencies.
 
 ### 3. Privacy
-Find privacy issues. **PII** (names, emails, IP addresses, account identifiers,
-tokens) must not leak into log messages, error output, analytics, or other
-sinks. Check that sensitive data is minimized, redacted, or omitted.
+Find privacy issues. Genuine **PII** — names, emails, **raw (non-anonymized)
+account or user identifiers**, secrets and tokens, precise location, payment
+data — must not leak into log messages, error output, analytics, or other sinks.
+Check that sensitive data is minimized, redacted, or omitted.
+- **IP addresses and anonymized account/user identifiers are acceptable** — they
+  are not PII and are often needed for debugging.
+- If a raw identifier is genuinely necessary, it should be **obfuscated** so it
+  still gives an engineer debuggability without leaking the full PII.
 
-### 4. Coding principles
+### 4. Observability
+- **Telemetry** for measuring usage and engagement, where the change warrants it.
+- **Debuggability**: appropriate logging with identifying parameters so issues
+  can be traced. Logs should be **parsable/structured** as much as possible.
+
+### 5. Coding principles
 Check against common coding principles — **project-level conventions first**
 (CLAUDE.md, linter configs, and style guides in the repo), then industry
-standards: **SOLID**, the **language's own standards and idioms**, and the
-**framework's conventions**. Flag violations that hurt maintainability, not
-stylistic nits a formatter already handles.
+standards: **SOLID**, **12-Factor**, the **language's own standards and idioms**,
+and the **framework's conventions**. Also check:
+- **Code reads like a well-written novel.** Classes, methods, functions, files,
+  and variables are descriptively named.
+- **Comments explain _why_**, not what — only where the reason isn't obvious from
+  the code. No class or method/function doc comments unless this is a public
+  library that needs them.
+- **No TODOs in the code.** Future work belongs in an issue tracker.
 
-### 5. Tests
+Flag violations that hurt maintainability, not stylistic nits a formatter already
+handles.
+
+### 6. Tests
 Check test principles and missed testing opportunities:
 - New or changed behavior should be covered; flag untested paths.
 - Prefer **mocks** over real external dependencies wherever possible.
@@ -57,6 +75,10 @@ Check test principles and missed testing opportunities:
   attached** — a network connection may be used only to download dependencies
   the test needs, never as part of the test's behavior. Flag tests that hit live
   services, depend on wall-clock or ordering, or only pass in one environment.
+
+### 7. Documentation
+If the repo contains docs, they must be **kept up to date** with any change,
+addition, or removal in this diff. Flag docs left stale by the change.
 
 ## Rules
 
