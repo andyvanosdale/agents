@@ -24,7 +24,7 @@ renaming.
 **Link a single document into a project:**
 
 ```sh
-ln -s "$PWD/agents/example-code-reviewer.md" /path/to/project/.claude/agents/
+ln -s "$PWD/agents/code-reviewer.md" /path/to/project/.claude/agents/
 ```
 
 **Link a whole category into your home config (applies everywhere):**
@@ -38,7 +38,7 @@ ln -s "$PWD/commands" ~/.claude/commands
 original:
 
 ```sh
-cp agents/example-code-reviewer.md /path/to/project/.claude/agents/
+cp agents/code-reviewer.md /path/to/project/.claude/agents/
 ```
 
 > [!NOTE]
