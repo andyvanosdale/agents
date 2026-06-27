@@ -1,0 +1,19 @@
+# Never commit secrets or machine-local config to a public library.
+settings.local.json
+*.local.json
+.env
+.env.*
+*.env
+*.key
+*.pem
+*.p12
+*.pfx
+secrets.*
+credentials.*
+*.secret
+
+# Editor / OS noise
+.DS_Store
+*.swp
+.idea/
+.vscode/

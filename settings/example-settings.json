@@ -1,0 +1,22 @@
+{
+  "$comment": "Example settings.json fragment. Illustrative only — no secrets. Copy the keys you want into ~/.claude/settings.json or a project's .claude/settings.json. The hook below simply echoes a reminder when a session starts; replace or remove it as you like.",
+  "permissions": {
+    "allow": [
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Session started — remember to branch before committing.'"
+          }
+        ]
+      }
+    ]
+  }
+}
