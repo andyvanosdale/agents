@@ -17,10 +17,10 @@ rules below exactly — they encode this repository's PR guidelines.
 2. **Commit verifiably.** Use a consistent committer identity, and sign commits
    where the environment supports it. Write clear, descriptive commit messages.
 3. **Open the PR** with a description in the format below.
-4. **Get an independent review before requesting merge.** Do not rely solely on
-   CI or external reviewers. Hand the change off to the **`code-reviewer` agent**
-   (`agents/code-reviewer.md`) for the review passes — do not duplicate those
-   passes yourself. Address what it finds before moving on.
+4. **Run your own independent review before requesting merge.** Do not rely
+   solely on CI or external reviewers. Carry out that review by handing the
+   change to the **`code-reviewer` agent** (`agents/code-reviewer.md`) — use its
+   passes rather than duplicating them. Address what it finds before moving on.
 5. **Keep the PR description up to date** as new commits land on the branch. The
    description always reflects the current state of the change, not just its
    first version.
@@ -30,7 +30,8 @@ rules below exactly — they encode this repository's PR guidelines.
    suggestion, and never silently dismiss one.
 7. **Squash and merge.** Once the change is reviewed and approved:
    - The squash commit **subject** ends with the GitHub-style PR number suffix —
-     e.g. `Add widget caching (#123)`.
+     e.g. `Add widget caching (#123)`. The number is assigned when the PR is
+     opened, so finalize the subject at squash time.
    - The squash commit **body** is the prose **Summary** paragraphs from the PR
      description, verbatim.
    - Ask before merging.
