@@ -13,7 +13,8 @@ rules below exactly — they encode this repository's PR guidelines.
 
 1. **Branch first — never commit to the default branch.** Every change ships via
    a pull request. If the work is sitting on the default branch, create a branch
-   for it before doing anything else.
+   for it before doing anything else. Name the branch descriptively but
+   succinctly, after the change it carries.
 2. **Commit verifiably.** Use a consistent committer identity, and sign commits
    where the environment supports it. Write clear, descriptive commit messages.
 3. **Open the PR** with a description in the format below.
@@ -40,10 +41,12 @@ rules below exactly — they encode this repository's PR guidelines.
 
 Keep the description current as the branch evolves.
 
-1. **Summary** (required) — 1–3 prose paragraphs describing the problem and the
-   change. Must **not** reference code symbols, other PRs, issues, or commits.
-   References to *other repositories* are allowed. (This section becomes the
-   squash commit body, so keep it self-contained.)
+1. **Summary** (required) — the opening prose of the description, written with
+   **no Markdown heading** (the section is titleless; "Summary" is just what we
+   call it here). 1–3 paragraphs describing the problem and the change. Must
+   **not** reference code symbols, other PRs, issues, or commits. References to
+   *other repositories* are allowed. (This section becomes the squash commit
+   body, so keep it self-contained.)
 2. **Why** (optional) — motivation and background; references are allowed here.
 3. **Changes** — a list of the files changed and what changed in each.
 4. **Test Plan** (optional) — only extra testing needed **beyond what CI does**.
