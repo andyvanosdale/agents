@@ -41,6 +41,16 @@ original:
 cp agents/code-reviewer.md /path/to/project/.claude/agents/
 ```
 
+## Using it everywhere, privately
+
+To make this library your **personal** set of documents across all your repos —
+including **Claude Code on the Web** — without those documents showing up in
+teammates' sessions when you share a repo, see
+[docs/personal-library-setup.md](docs/personal-library-setup.md). For web
+sessions, [`scripts/web-setup.sh`](scripts/web-setup.sh) repopulates your
+user-scope config (`~/.claude/...`) on each session from an environment setup
+script.
+
 > [!NOTE]
 > Agent documents are **instructions** the model loads into context — and
 > settings/hooks can run shell commands. Read a document before linking it, the
