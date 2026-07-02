@@ -56,10 +56,20 @@ and their setup scripts are configured **per user / per environment** and are
 environments, so your setup script never runs for them.
 
 Use [`scripts/web-setup.sh`](../scripts/web-setup.sh): paste it (or
-`sh /path/to/web-setup.sh`) into your environment's setup script. It clones
+`sh /path/to/web-setup.sh`) into your environment's setup script. It fetches
 this library and symlinks `agents/`, `commands/`, and `skills/` into
 `~/.claude` on each session. Because the library is public and secret-free, the
-clone needs no credentials.
+fetch needs no credentials.
+
+Claude Code on the Web routes every `git` operation through a scoped GitHub
+proxy, and a `git clone` fired from a setup script lacks the credential that
+proxy expects — so it is rejected with `HTTP 403` (`Setup script failed with
+exit code 128`), even for a public repo. The script sidesteps this by
+downloading the library as a public tarball over ordinary HTTPS, which uses a
+separate proxy that allows anonymous GitHub downloads. On a normal machine
+`git` works, so the script prefers it and only falls back to the tarball when
+git is unavailable or blocked. Forking to a *private* repo requires the git
+path, since the anonymous tarball download won't authenticate.
 
 Each engineer points their own environment's setup script at their own library,
 so nobody's personal docs ever enter anyone else's session.
