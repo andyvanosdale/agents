@@ -56,3 +56,11 @@ description: Use when the user asks for a summary of a pull request's changes.
 
 Illustrative only. Keep hooks obviously safe and explain what they do in a
 comment or the README. Never include real credentials.
+
+### GitHub templates — `.github/`
+
+Issue and pull request templates follow GitHub's fixed locations and names
+(`.github/ISSUE_TEMPLATE/<name>.md`, `.github/ISSUE_TEMPLATE/config.yml`,
+`.github/pull_request_template.md`), which take precedence over the naming
+rule above. They are live for this repo and meant to be copied into another
+project's `.github/` unchanged.

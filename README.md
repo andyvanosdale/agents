@@ -15,7 +15,7 @@ This repo ships **no secrets**. Every document here is safe to read and share.
 | `skills/`   | Skills (a folder per skill, with `SKILL.md`) | `~/.claude/skills/`, `<proj>/.claude/skills/` |
 | `settings/` | Example `settings.json` / hook snippets | `~/.claude/settings.json`, `<proj>/.claude/settings.json` |
 | `docs/`     | Reusable `CLAUDE.md` fragments to copy  | (copied into a project's `CLAUDE.md`) |
-| `.github/`  | Issue & PR templates encoding the conventions in `CLAUDE.md` | (live here; copy into a project's `.github/`) |
+| `.github/`  | Issue & PR templates encoding the conventions in `CLAUDE.md` and `agents/` | (live here; copy into a project's `.github/`) |
 
 The directory names mirror what Claude Code resolves, so a symlink works with no
 renaming.

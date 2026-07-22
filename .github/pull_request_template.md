@@ -19,7 +19,7 @@ already covers it. -->
 
 <!-- The files changed and what changed in each. -->
 
-- `path/to/file` — what changed and why it changed here
+- `path/to/file` — what changed
 
 ## Test Plan
 
