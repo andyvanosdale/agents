@@ -89,6 +89,33 @@ the author's conclusion.
   the approach out to adding machinery.
 - Read agents' summaries, not their full reports.
 
+## Trial report
+
+While the playbook is on trial, post a report as a comment on the coordination
+issue, headed `Playbook trial report`, after each merged unit of work and
+whenever the owner asks. It is how the playbook gets corrected, so report what
+happened, not what should have happened.
+
+```
+### Playbook trial report — <date> — <unit of work, issue link>
+
+| # | Role | Agent definition | Model | Effort | Tokens | Minutes | Round | Outcome |
+|---|---|---|---|---|---|---|---|---|
+(one row per agent launched, in order, copied from the agent-run lines)
+
+**Deviations.** Each place you did not follow the playbook or a definition, and why.
+**Prompt problems.** For each agent: anything it misunderstood, ignored or had to
+ask about; anything missing from its definition or brief template. Quote the
+sentence at fault where there is one.
+**Model and effort.** Any launch that was clearly over- or under-powered, with
+the evidence.
+**Caught late.** Blocking findings in code review that a test should have caught.
+**Owner corrections.** Each time the owner corrected a brief, a stage or a decision.
+**Proposed changes.** Specific edits to the playbook, a definition or a template.
+```
+
+Do not edit the playbook or the definitions yourself during a trial. Propose.
+
 ## Stop and ask the owner
 
 Add the question to the coordination issue's decisions list, label the work

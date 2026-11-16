@@ -171,6 +171,19 @@ Collect from the `agent-run` lines and the issues, per project:
 | Defects found after merge | Whether the caps are letting too much through |
 | Units of work stalled on `needs-owner`, and for how long | Whether decisions are reaching the owner clearly |
 
+The coordinator posts a **playbook trial report** on the coordination issue
+after each merged unit of work: every agent launched, where it departed from
+the playbook, what each prompt got wrong, and proposed edits. The format is in
+the coordinator definition. Changes to this playbook are made from those
+reports, by pull request, not by the coordinator during the trial.
+
+### Running a trial before the definitions are installed
+
+A coordinator can follow the playbook from a checkout of this repository
+without installing anything: it reads the definition for a role, launches a
+general-purpose agent on the model and effort the table gives, and passes the
+definition's text followed by the filled-in brief as the prompt.
+
 ## Fragment for a project's CLAUDE.md
 
 ```md
