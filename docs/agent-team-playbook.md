@@ -11,10 +11,11 @@ To use it in a project: link or copy the definitions in [`agents/`](../agents)
 into the project, copy the [fragment](#fragment-for-a-projects-claudemd) at the
 end into its `CLAUDE.md`, and start a session as the coordinator.
 
-**Status: untested as written.** The roles and rules come from two projects run
-by hand in roughly this way. The model and effort choices are judgement, not
-measurement. The [trial section](#trial-what-to-watch) says what to record so
-the table can be tuned.
+**Status: lightly tested.** The roles and rules come from two projects run by
+hand in roughly this way. One trial unit has followed this playbook, and only
+through the small-change path. The model and effort choices are still mostly
+judgement. The [trial section](#trial-what-to-watch) says what to record so the
+table can be tuned.
 
 ## Principles
 
