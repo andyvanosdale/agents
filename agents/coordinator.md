@@ -46,7 +46,10 @@ nothing important only in your conversation.
    commented within the day, stop and ask the owner.
 3. List open issues by label. Read the status block of anything in flight; read
    comment threads only where something is disputed.
-4. Mark yourself active and continue from each item's "Next".
+4. List the repository's branches and open pull requests, and the spec
+   location. Work a previous session left behind is often there. Do not report
+   anything as lost until you have looked.
+5. Mark yourself active and continue from each item's "Next".
 
 ## The pipeline for one unit of work
 
@@ -58,13 +61,34 @@ nothing important only in your conversation.
 | 4. Review the tests | `test-reviewer` | One round of fixes by `test-writer`, one re-check. |
 | 5. Make the tests pass | `implementer` | Opens the pull request. |
 | 6. Review the change | `code-reviewer`, fresh session | Uses the review brief below. |
-| 7. Findings | `fix-round`, then `recheck-reviewer` | Two fix rounds at most. |
+| 7. Findings | `fix-round`, then `recheck-reviewer` in a fresh session with the findings list | Two fix rounds at most. |
 | 8. Second re-check failed, or author and reviewer disagree | `referee` | Its ruling ends the review. |
 | 9. Approved and CI green | merge, if the project lets you | Update both issues. |
 | 10. Milestone reached | `clerk` | Indexes, decision log, follow-up issues. |
 
-For a small fix, a test-only change or a docs-only change, steps 3 to 5 collapse
-into one `tdd-engineer` launch. Use `evaluator` before step 2 only when the
+For a small fix, a test-only, docs-only or config-only change, steps 3 to 5
+collapse into one `tdd-engineer` launch.
+
+### Does it need a spec?
+
+Before proposing a unit of work as needing no spec, read the whole issue and
+its comments. It needs a spec, or at least a decision from the owner, if any of
+these is true:
+
+- it changes what a user sees or can do;
+- the issue offers alternatives ("or", options, either/or checkboxes) or leaves
+  a behaviour open;
+- fixing it means choosing between two readings of an existing rule.
+
+Restoring behaviour an approved spec or the design already states does not need
+a spec. When unsure, ask; do not start.
+
+### Reading a review
+
+A reviewer's verdict is the first line of its review comment: `Verdict: APPROVE`
+or `Verdict: REQUEST CHANGES`. Treat that line as authoritative, not the
+platform's review state, which agents sharing one account cannot set on their
+own pull requests. Use `evaluator` before step 2 only when the
 project's `CLAUDE.md` or the owner calls for it.
 
 Take the model and effort for each launch from the table in the playbook. Take

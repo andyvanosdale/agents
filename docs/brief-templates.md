@@ -12,6 +12,16 @@ section if long. Return to me 200 words or less: verdict or outcome first,
 blocking items, links.
 ```
 
+Reviewers add one more block. Agents usually share one account, and a platform
+will not let an account approve or request changes on its own pull request, so
+the verdict is carried in text:
+
+```
+Verdict: post your review as a single comment whose first line is exactly
+"Verdict: APPROVE" or "Verdict: REQUEST CHANGES". Use the platform's review
+state as well only if it lets you; the first line is what counts.
+```
+
 ## spec-writer
 
 ```
@@ -37,6 +47,7 @@ Review the tests in commit <sha> on <branch> against the spec <spec link>.
 Run with: <commands>.
 Blocking here means: a rule with no test, a wrong expected value, or a test a
 wrong implementation would pass.
+<the Verdict block>
 ```
 
 ## implementer
@@ -47,6 +58,19 @@ You may change: <paths>. Do not touch: <paths>, or the tests in <sha>.
 Project rules that apply: <list>.
 Must pass before you push: <commands>.
 Open a pull request per the project's conventions.
+```
+
+## tdd-engineer (small change)
+
+```
+Make this small change test-first, in one pass: <what and why> (<issue link>).
+This covers writing the failing test or scenario, the change, and opening the
+pull request. Branch: <name>.
+You may change: <paths>. Do not touch: <paths>.
+Project rules that apply: <list>.
+Must pass before you push: <commands>.
+If this turns out to change what a user sees, or to need a choice between
+behaviours, stop and tell me: it needs a spec.
 ```
 
 ## code-reviewer (first pass)
@@ -63,6 +87,16 @@ Check the tests as well as the code:
 Blocking means: a wrong result, data loss, a security problem, a crash, a hang,
 or corrupted data or pages. List everything else as follow-ups.
 Return each blocking finding with a reproduction and a failing test.
+<the Verdict block>
+```
+
+## code-reviewer (trivial change)
+
+```
+Review pull request <link>: a <test-only | docs-only | config-only> change for
+<issue link>. Check it does what the issue asks, breaks nothing, and that CI
+covers it. Blocking means the same as for any review.
+<the Verdict block>
 ```
 
 ## fix-round
@@ -79,6 +113,7 @@ If a finding needs a new mechanism, stop and tell me before building it.
 ```
 Re-check pull request <link> after fix round <n>. Earlier findings: <list>.
 Review only the changes since <sha>. Run with: <commands>.
+<the Verdict block>
 ```
 
 ## referee

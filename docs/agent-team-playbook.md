@@ -49,12 +49,12 @@ given at launch.
 | Test writer | [`test-writer`](../agents/test-writer.md) | A spec is approved | Critical: strong. Otherwise standard | High for critical, medium otherwise |
 | Test reviewer | [`test-reviewer`](../agents/test-reviewer.md) | The tests are committed and failing | Critical: strong. Otherwise the opposite of the test writer | Medium |
 | Implementer | [`implementer`](../agents/implementer.md) | The tests are approved | Critical: strong. Otherwise standard | High for critical, medium otherwise |
-| Small change | [`tdd-engineer`](../agents/tdd-engineer.md) | A small fix, or a test-only or docs-only change, where splitting tests from code is not worth three launches | Standard | Medium |
+| Small change | [`tdd-engineer`](../agents/tdd-engineer.md) | A small fix, or a test-only, docs-only or config-only change, where splitting tests from code is not worth three launches | Standard | Medium |
 | Pull request | [`pr-author`](../agents/pr-author.md) | A change is ready to open, update or merge | Same as the implementer | Low to medium |
 | Code reviewer | [`code-reviewer`](../agents/code-reviewer.md) | A pull request is open; always a fresh session | Critical: strong. Otherwise the opposite of the implementer | High for critical, medium otherwise |
 | Fix round | [`fix-round`](../agents/fix-round.md) | The reviewer listed blocking findings | Same as the implementer | Medium |
-| Re-check | [`recheck-reviewer`](../agents/recheck-reviewer.md) | A fix round was pushed | Same reviewer session for the first re-check; a fresh session for the second | Medium |
-| Trivial review | [`code-reviewer`](../agents/code-reviewer.md) | Test-only or docs-only change | Small or standard | Low |
+| Re-check | [`recheck-reviewer`](../agents/recheck-reviewer.md) | A fix round was pushed | A fresh session given the findings list, on the reviewer's model. Resume the first reviewer only when the fix is large and its context is needed | Medium; low for a trivial change |
+| Trivial review | [`code-reviewer`](../agents/code-reviewer.md) | Test-only, docs-only or config-only change | Small or standard | Low |
 | Clerk | [`clerk`](../agents/clerk.md) | A milestone merged and there is bulk mechanical follow-up | Small | Low |
 | Project setup | [`project-setup`](../agents/project-setup.md) | A project starts, or its structure and docs need auditing | Standard | Medium |
 
@@ -142,11 +142,16 @@ what the "active" line is for.
 3. Independence comes from a fresh session and an adversarial brief. Use a
    different model from the author where that does not put a weaker reviewer on
    critical work.
-4. A resumed reviewer carries its whole history. Resume it once, then start
-   fresh with the findings list.
-5. Two units of work in flight at most.
-6. Briefs are filled-in templates, not compositions.
-7. Documents are brought in line once per milestone, after the code has stopped
+4. A resumed reviewer carries its whole history, so a re-check is a fresh
+   session given the findings list. In the first trial a resumed low-effort
+   re-check cost more tokens than the first review.
+5. **Every launch has a large fixed cost.** In the first trial each launch on a
+   small configuration change used 90,000 to 150,000 tokens whatever its effort
+   setting, because each agent reads the project and runs its checks from
+   cold. For small work the number of launches matters more than the model.
+6. Two units of work in flight at most.
+7. Briefs are filled-in templates, not compositions.
+8. Documents are brought in line once per milestone, after the code has stopped
    moving.
 
 ## Tuning per project
@@ -211,6 +216,18 @@ This project is run by a coordinator following the agent team playbook.
 Newest first. Record what changed and why, so the reasoning travels with the
 table.
 
+- **After the first trial unit** (a configuration-only change: one small-change
+  launch, a review, one fix round, a re-check; about 516,000 tokens in all).
+  Added brief templates for the small change and the trivial review, which were
+  missing. Reviews now carry their verdict as the first line of a comment,
+  because agents sharing one account cannot set a review state on their own
+  pull request. Re-checks default to a fresh session, on the evidence that the
+  resumed one cost more than the first review. Added a "does it need a spec?"
+  check after the coordinator proposed, as needing no decision, an issue that
+  left a user-facing choice open; and a step to look at branches and pull
+  requests when taking over, after it reported recoverable work as lost. Not
+  yet exercised by a trial: the spec writer, the test writer, test reviewer and
+  implementer split, the referee, and any strong- or top-model launch.
 - **Test-first pipeline, issues as state, capped loops.** Added the test
   writer, test reviewer and implementer so tests are written and checked before
   code. Moved the coordinator's state and run log into issues so another

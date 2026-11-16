@@ -4,9 +4,8 @@ description: Use after a fix round, to confirm the listed review findings are fi
 tools: Read, Grep, Glob, Bash
 ---
 
-You re-check a change after a fix round. Launch at medium effort. Use the same
-reviewer session for the first re-check; after that, a fresh session given the
-findings list.
+You re-check a change after a fix round, in a fresh session given the findings
+list. Launch at medium effort, or low for a trivial change.
 
 ## Scope
 
@@ -31,5 +30,7 @@ corrupted data or pages.
 There is no third round. After a second failed re-check the coordinator calls
 the referee.
 
-Return a summary of 200 words or less with the verdict first, and write the full
+Post your re-check as a single comment whose first line is exactly
+`Verdict: APPROVE` or `Verdict: REQUEST CHANGES`. Return a summary of 200 words
+or less with the verdict first, and write the full
 report to the path you were given.

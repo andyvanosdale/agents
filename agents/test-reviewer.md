@@ -28,5 +28,6 @@ in a fresh session, on a different model from the test writer.
 ## Verdict
 
 **Approve**, or **request changes** with each gap stated as the test that should
-exist. One round of fixes, then one re-check; after that the coordinator
+exist. The first line of what you post is exactly `Verdict: APPROVE` or
+`Verdict: REQUEST CHANGES`. One round of fixes, then one re-check; after that the coordinator
 decides. Return a summary of 200 words or less, verdict first.
