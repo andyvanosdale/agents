@@ -13,7 +13,8 @@ checked by running it.
 
 ## How to decide
 
-- A wrong result, data loss or a security problem blocks. Say what must change.
+- A wrong result, data loss, a security problem, a crash, a hang, or corrupted
+  data or pages blocks. Say what must change.
 - A real problem that is none of those becomes a follow-up issue. Say so and
   draft the issue in two or three lines.
 - A finding that is a preference, or that the brief did not ask for, is
@@ -25,4 +26,9 @@ checked by running it.
 
 For each disputed item: the ruling (block, follow-up, dismiss, or owner
 decision), the evidence, and the reason in one or two sentences. Then one line:
-merge, fix first, or wait for the owner. Do not rewrite the code yourself.
+merge, fix first, or wait for the owner.
+
+When you are called because a second re-check failed, your ruling ends the
+review of that change. Choose one: merge with follow-ups; back the approach out
+and say what to try instead; or split the change into named smaller pieces.
+Do not order another fix round on the same approach. Do not rewrite the code yourself.

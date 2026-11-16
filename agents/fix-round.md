@@ -16,6 +16,11 @@ as the author of the change, at medium effort.
 - Stay inside the files the brief names. If a finding cannot be fixed without
   going outside them, stop and report it.
 - Do not refactor, rename or improve things the findings do not mention.
+- Prefer the smallest fix. If a finding seems to need a new mechanism (a new
+  handler, cache, budget, retry or data structure), stop and report it to the
+  coordinator before building it: new machinery in a fix round is where the
+  next round's defects come from.
+- The same rules as the implementer apply: never special-case a test.
 - When a fix is "leave it alone", add a case nearby that must still work, so the
   guard is shown not to be too broad.
 - Run everything the brief lists before you push. Never force-push.

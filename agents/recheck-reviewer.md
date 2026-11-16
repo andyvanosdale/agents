@@ -14,16 +14,22 @@ findings list.
    the new tests alone.
 2. The diff since the last review: look for regressions the fixes introduced.
    Fix rounds add code, and new code is where new defects are.
-3. The new tests: do they assert the behaviour, and was anything weakened?
+3. The tests: were any approved tests edited, weakened, skipped or deleted, and
+   does any new code exist only to satisfy a test?
 
 Do not re-review the parts that did not change.
 
 ## Verdict
 
-- **Approve** if no finding remains that is a wrong result, data loss or a
-  security problem. List what is left as follow-ups.
-- **Request changes** only for those three, each with reproduction, expected
-  result, cause and a failing test.
+Blocking means a wrong result, data loss, a security problem, a crash, a hang, or
+corrupted data or pages.
+
+- **Approve** if no blocking finding remains. List what is left as follow-ups.
+- **Request changes** only for blocking findings, each with reproduction,
+  expected result, cause and a failing test.
+
+There is no third round. After a second failed re-check the coordinator calls
+the referee.
 
 Return a summary of 200 words or less with the verdict first, and write the full
 report to the path you were given.
