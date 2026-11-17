@@ -27,7 +27,8 @@ which agent to launch for which work, when, on which model and at what effort,
 with the rules that keep the cost down. Every role in it is a definition in
 `agents/`, from the `coordinator` that runs the project to the `spec-writer`,
 `test-writer`, `implementer`, `code-reviewer`, `referee` and `clerk` it delegates
-to. [docs/brief-templates.md](docs/brief-templates.md) has the brief for each role.
+to. [docs/brief-templates.md](docs/brief-templates.md) has the brief for each role,
+and [docs/environment-notes.md](docs/environment-notes.md) the facts about where agents run.
 
 ## Using a document
 
