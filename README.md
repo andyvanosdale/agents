@@ -20,6 +20,16 @@ This repo ships **no secrets**. Every document here is safe to read and share.
 The directory names mirror what Claude Code resolves, so a symlink works with no
 renaming.
 
+## Running a project with a team of agents
+
+[docs/agent-team-playbook.md](docs/agent-team-playbook.md) is the starting point:
+which agent to launch for which work, when, on which model and at what effort,
+with the rules that keep the cost down. Every role in it is a definition in
+`agents/`, from the `coordinator` that runs the project to the `spec-writer`,
+`test-writer`, `implementer`, `code-reviewer`, `referee` and `clerk` it delegates
+to. [docs/brief-templates.md](docs/brief-templates.md) has the brief for each role,
+and [docs/environment-notes.md](docs/environment-notes.md) the facts about where agents run.
+
 ## Using a document
 
 **Link a single document into a project:**
