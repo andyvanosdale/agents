@@ -38,10 +38,13 @@ nothing important only in your conversation.
   `blocked`.
 - Full agent reports go on the issue or the pull request, in a collapsed
   section if long. Never paste secrets or private details into an issue.
+- **Read back what you write.** After posting or editing an issue, comment or
+  pull request body, fetch it and check it says what you meant.
 
 ## Starting or taking over
 
-1. Read the project's `CLAUDE.md`, including its "Agent team" section.
+1. Read the project's `CLAUDE.md`, including its "Agent team" section, and
+   `docs/environment-notes.md` in the playbook's repository.
 2. Read the coordination issue. If another coordinator is marked active and has
    commented within the day, stop and ask the owner.
 3. List open issues by label. Read the status block of anything in flight; read
@@ -57,13 +60,14 @@ nothing important only in your conversation.
 |---|---|---|
 | 1. Facts missing about an outside service | `discovery` | |
 | 2. Spec | `spec-writer` | Label `needs-owner`. Wait for the owner's approval. |
-| 3. Tests from the approved spec | `test-writer` | Tests are committed on the branch, failing. |
+| 3. Tests from the approved spec | `test-writer` | Tests are committed on the branch, failing. Spec gaps come back as a list. |
+| 3a. Spec gaps | the owner, once | See "Spec gaps" below. Then `test-writer` again with the amendment brief. |
 | 4. Review the tests | `test-reviewer` | One round of fixes by `test-writer`, one re-check. |
 | 5. Make the tests pass | `implementer` | Opens the pull request. |
 | 6. Review the change | `code-reviewer`, fresh session | Uses the review brief below. |
 | 7. Findings | `fix-round`, then `recheck-reviewer` in a fresh session with the findings list | Two fix rounds at most. |
 | 8. Second re-check failed, or author and reviewer disagree | `referee` | Its ruling ends the review. |
-| 9. Approved and CI green | merge, if the project lets you | Update both issues. |
+| 9. Approved, CI green, commits clean | merge, if the project lets you | See "Before merging" below. Update both issues. |
 | 10. Milestone reached | `clerk` | Indexes, decision log, follow-up issues. |
 
 For a small fix, a test-only, docs-only or config-only change, steps 3 to 5
@@ -82,6 +86,42 @@ these is true:
 
 Restoring behaviour an approved spec or the design already states does not need
 a spec. When unsure, ask; do not start.
+
+Where the owner's written instructions (an epic, an issue, `CLAUDE.md`) and
+this procedure differ, the owner's instructions win. If following them to the
+letter looks clearly unintended, such as "every unit needs a spec" applied to
+setting up the toolchain, ask before departing from them; do not decide which
+reading is right yourself.
+
+### Spec gaps
+
+Expect them. Writing tests for critical work finds questions an approved spec
+does not answer, and a good test writer will not guess. This is the pipeline
+working, not a failure of the spec.
+
+- Collect every gap from the test writer, and from the test reviewer if it has
+  run, before going to the owner. Ask them in **one** message, numbered, each
+  with its options and a recommendation.
+- Ask one at a time only when a later question cannot be put until an earlier
+  one is answered.
+- Record the owner's answers in the spec as amendments, keeping its numbering,
+  and say on the issue what changed. The owner's answer is the approval.
+- Then launch the test writer once, with all the answers.
+
+### Before merging
+
+All three, each with the same weight:
+
+1. The reviewer's verdict is `APPROVE`.
+2. CI is green on the head commit.
+3. Every commit message on the branch and the pull request's title and body
+   follow the project's commit rules. Look at each commit, not only the last:
+   with a squash merge, every message and trailer on the branch lands on the
+   default branch. Fix what breaks the rules before merging, and when you
+   squash, set the commit title and message yourself.
+
+Something that has reached the default branch's history is not worth rewriting
+that history to remove. Report it to the owner.
 
 ### Reading a review
 
@@ -112,6 +152,8 @@ the author's conclusion.
 - A fix round that needs a new mechanism comes back to you first. Prefer backing
   the approach out to adding machinery.
 - Read agents' summaries, not their full reports.
+- A cosmetic problem that blocks nothing gets one fix attempt. If it does not
+  stick, note it on the issue and move on.
 
 ## Trial report
 
@@ -135,6 +177,8 @@ sentence at fault where there is one.
 the evidence.
 **Caught late.** Blocking findings in code review that a test should have caught.
 **Owner corrections.** Each time the owner corrected a brief, a stage or a decision.
+**Owner round-trips.** How many times you went to the owner, and for what.
+**Your own errors.** Mistakes you made as coordinator, and how each was caught.
 **Proposed changes.** Specific edits to the playbook, a definition or a template.
 ```
 
@@ -149,6 +193,8 @@ issue `needs-owner`, and move to other work, when:
 - a spec is silent or contradicts itself on something that changes behaviour;
 - a new permission, dependency, cost or external account is needed;
 - an action cannot be undone;
+- an agent, or you, were refused permission for an action. Do not try the same
+  action another way or from another agent; ask once and record the answer;
 - the referee names a question for the owner.
 
 Never push to the default branch. Never approve a spec on the owner's behalf.

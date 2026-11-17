@@ -4,9 +4,11 @@ The coordinator fills in the template for the role and sends it as the whole
 brief. Angle-bracket items are facts to fill in; everything else stays. See
 [agent-team-playbook.md](agent-team-playbook.md) for which role to launch when.
 
-Every brief ends with the same reporting block:
+Every brief ends with the same closing block:
 
 ```
+Environment: <the notes from environment-notes.md that apply here>
+Commit rules: <the project's rules for commit messages and pull request text>
 Report: post the full report to <issue or pull request link>, in a collapsed
 section if long. Return to me 200 words or less: verdict or outcome first,
 blocking items, links.
@@ -20,6 +22,18 @@ the verdict is carried in text:
 Verdict: post your review as a single comment whose first line is exactly
 "Verdict: APPROVE" or "Verdict: REQUEST CHANGES". Use the platform's review
 state as well only if it lets you; the first line is what counts.
+```
+
+## project-setup
+
+```
+Set up <project> as decided by the owner: <decisions, or a link to them>.
+Create: <what must exist at the end: toolchain, folders, docs, CI, one test>.
+Do not add product code. Branch: <name>.
+Include the playbook's "Agent team" section in CLAUDE.md, filled in with:
+<coordination issue, spec location, critical areas, merge rule, commands>.
+Must pass before you push: <commands>.
+Open a pull request per the project's conventions.
 ```
 
 ## spec-writer
@@ -38,6 +52,16 @@ Write failing tests for the approved spec <spec link> (<issue link>).
 Branch: <name>. Test locations and style: <paths>.
 Run with: <commands>. Existing tests must still pass.
 Commit the tests alone, before any production code.
+Find every gap in the spec before you report, not just the first. List them
+together, each with the options you see.
+```
+
+## test-writer (amendment)
+
+```
+The owner answered these spec gaps: <numbered answers>. The spec now says:
+<link or text>. Add or change the tests for these answers only, in a new commit
+on <branch>. Run with: <commands>.
 ```
 
 ## test-reviewer

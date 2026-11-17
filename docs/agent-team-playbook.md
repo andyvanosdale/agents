@@ -11,11 +11,13 @@ To use it in a project: link or copy the definitions in [`agents/`](../agents)
 into the project, copy the [fragment](#fragment-for-a-projects-claudemd) at the
 end into its `CLAUDE.md`, and start a session as the coordinator.
 
-**Status: lightly tested.** The roles and rules come from two projects run by
-hand in roughly this way. One trial unit has followed this playbook, and only
-through the small-change path. The model and effort choices are still mostly
-judgement. The [trial section](#trial-what-to-watch) says what to record so the
-table can be tuned.
+**Status: partly tested.** Three units of work on two projects have followed
+this playbook: a project setup, a small configuration change, and one feature
+through the full spec, tests, code and review pipeline. Not yet exercised: the
+spec writer (the specs used were written before the trial), the referee, and a
+second fix round. The model and effort choices are still mostly judgement. The
+[trial section](#trial-what-to-watch) says what to record so the table can be
+tuned.
 
 ## Principles
 
@@ -72,7 +74,9 @@ spec ──owner approves──▶ tests ──▶ test review ──▶ code �
 1. **Spec.** The spec writer drafts it with the owner's decisions at the top.
    Nothing proceeds until the owner approves.
 2. **Tests.** The test writer turns every rule, "left alone" case and edge case
-   into a failing test and commits them alone.
+   into a failing test and commits them alone. It reports every question the
+   spec does not answer; the coordinator puts them to the owner in one message,
+   records the answers in the spec, and the test writer finishes.
 3. **Test review.** A different agent checks coverage, expected values and
    whether a wrong implementation could pass. One round of fixes.
 4. **Code.** The implementer makes the tests pass. It may add tests. It may not
@@ -81,8 +85,9 @@ spec ──owner approves──▶ tests ──▶ test review ──▶ code �
    the approved tests with the head to check none was edited, weakened or
    skipped and that no code special-cases a test.
 6. **Fix and re-check,** twice at most.
-7. **Merge** on the reviewer's approval with CI green, where the project allows
-   the coordinator to merge.
+7. **Merge** on the reviewer's approval, with CI green and every commit message
+   on the branch following the project's rules, where the project allows the
+   coordinator to merge.
 
 ### Why tests are split from code
 
@@ -94,6 +99,23 @@ small launch and not a review round.
 
 The split costs two extra launches per unit of work. That is why small changes
 use a single test-first agent.
+
+### Why spec gaps are expected
+
+On the first full run of this pipeline, the test writer found three questions
+an approved spec did not answer, and answering two raised a fourth. It was
+right not to guess. But each was taken to the owner separately and each answer
+was a separate launch. So the spec writer now walks each rule as a test writer
+would before finishing, the test writer reports all its gaps at once, and the
+coordinator asks the owner once.
+
+### Standing tie-breakers
+
+A project should state, up front, the few rules that settle a close call
+without the owner: for example "a wrong result is worse than a missing one".
+On one run such a rule decided between two readings of a review finding, and a
+fresh re-check confirmed the choice from the spec. Put them in the project's
+`CLAUDE.md` and in every author and reviewer brief.
 
 ### Why reviews are capped
 
@@ -176,6 +198,8 @@ Collect from the `agent-run` lines and the issues, per project:
 | Times the owner corrected a brief, a stage or a decision | Whether a standard-model coordinator is good enough |
 | Defects found after merge | Whether the caps are letting too much through |
 | Units of work stalled on `needs-owner`, and for how long | Whether decisions are reaching the owner clearly |
+| Trips to the owner per unit of work, and what for | Whether questions are being batched |
+| The coordinator's own session usage | It is not in the `agent-run` lines; the owner notes it from the session |
 
 The coordinator posts a **playbook trial report** on the coordination issue
 after each merged unit of work: every agent launched, where it departed from
@@ -184,6 +208,11 @@ the coordinator definition. Changes to this playbook are made from those
 reports, by pull request, not by the coordinator during the trial.
 
 ### Running a trial before the definitions are installed
+
+Things about the environment that are not about the project (which commands
+fail, what the platform refuses) are kept in
+[environment-notes.md](environment-notes.md) so each coordinator does not
+rediscover them.
 
 A coordinator can follow the playbook from a checkout of this repository
 without installing anything: it reads the definition for a role, launches a
@@ -200,6 +229,8 @@ This project is run by a coordinator following the agent team playbook.
 - Coordination issue: <link>
 - Specs live in: <location>. The owner approves specs.
 - Critical areas (strong model for tests, code and review): <paths or topics>
+- Standing tie-breakers: <rules that settle a close call without the owner>
+- Commit rules: <what commit messages and pull request text must and must not contain>
 - The coordinator may merge once the reviewer approves and CI is green: <yes/no>
 - Commands: <install, typecheck, test, build, end-to-end>
 - Differences from the playbook: <any role whose model or effort differs, and why>
@@ -217,6 +248,20 @@ This project is run by a coordinator following the agent team playbook.
 Newest first. Record what changed and why, so the reasoning travels with the
 table.
 
+- **After three trial units on two projects.** What they cost: project setup,
+  two launches, about 213,000 tokens; a configuration change, four launches,
+  about 516,000; one critical feature through the full pipeline on the strong
+  model, eight launches, about 1,140,000, over two days with seven trips to the
+  owner. Neither review needed a second fix round. Changes: spec gaps are now
+  expected, reported together and put to the owner once, and the spec writer
+  checks for them first; merging has a third gate, that every commit message on
+  the branch follows the project's rules, after a forbidden trailer on one
+  commit reached a default branch through a squash merge; a refused permission
+  goes to the owner and is never retried another way; the owner's written
+  instructions win over this procedure; the coordinator reads back what it
+  posts; cosmetic problems get one attempt; projects state standing
+  tie-breakers; environment facts moved to their own document; templates added
+  for project setup and test amendments.
 - **After the first trial unit** (a configuration-only change: one small-change
   launch, a review, one fix round, a re-check; about 516,000 tokens in all).
   Added brief templates for the small change and the trivial review, which were

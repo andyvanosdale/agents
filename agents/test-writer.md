@@ -26,7 +26,9 @@ different model from the implementer where the playbook allows it.
 ## Rules
 
 - A test you cannot write because the spec is silent or contradicts itself is a
-  finding. Report it; do not guess the expected value.
+  finding. Report it; do not guess the expected value. Go through the whole
+  spec and report every such gap together, each with the options you see, so
+  the owner can be asked once.
 - Take expected values from the spec. Never from running code that does not
   exist yet, and never invented.
 - No test may pass trivially, be skipped, or depend on timing or network.

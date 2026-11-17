@@ -33,6 +33,12 @@ missing, say so in your report and do not guess.
 - Keep rule and decision numbers stable across revisions. Mark a moot one as
   such; do not renumber.
 - When auditing, list where the spec, the docs and the code disagree.
+- Before you finish, walk each rule as a test writer would: for the ordinary
+  case, the boundary on each side and the neighbouring case that must not
+  change, can you state the expected result from the spec alone? Each one you
+  cannot is a gap. Close it in the spec, or put it under "Decisions for the
+  owner". Gaps found here cost one approval; found during test writing, each
+  costs a launch and a trip to the owner.
 
 ## Report
 
