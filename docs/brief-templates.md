@@ -33,7 +33,9 @@ Do not add product code. Branch: <name>.
 Include the playbook's "Agent team" section in CLAUDE.md, filled in with:
 <coordination issue, spec location, critical areas, merge rule, commands>.
 Must pass before you push: <commands>.
-Open a pull request per the project's conventions.
+Open a pull request per the project's conventions. Write its description as
+the present state of the change, what it does and why, and keep it current as
+the branch changes: the merge commit is written from it.
 ```
 
 ## spec-writer
@@ -81,7 +83,9 @@ Make the approved tests pass for <spec link> (<issue link>). Branch: <name>.
 You may change: <paths>. Do not touch: <paths>, or the tests in <sha>.
 Project rules that apply: <list>.
 Must pass before you push: <commands>.
-Open a pull request per the project's conventions.
+Open a pull request per the project's conventions. Write its description as
+the present state of the change, what it does and why, and keep it current as
+the branch changes: the merge commit is written from it.
 ```
 
 ## tdd-engineer (small change)
@@ -130,6 +134,7 @@ Fix these findings on <branch>, and only these: <numbered list, with the
 reviewer's failing tests>.
 You may change: <paths>. Must pass before you push: <commands>.
 If a finding needs a new mechanism, stop and tell me before building it.
+If your fix changes what the pull request does, update its description to match.
 ```
 
 ## recheck-reviewer

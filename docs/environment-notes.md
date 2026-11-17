@@ -38,5 +38,7 @@ symptom, then what to do.
 - A squash merge joins every commit message on the branch, trailers included,
   into the merge commit, and the platform may add co-author lines of its own.
   A trailer the project forbids, on any one commit, ends up on the default
-  branch for good. Check commit messages before merging, and set the squash
-  commit's title and message explicitly when merging.
+  branch for good. Always pass the squash commit's title and message
+  explicitly when merging (on GitHub's REST merge endpoint, `commit_title` and
+  `commit_message` with `merge_method=squash`), written fresh from the pull
+  request's description.

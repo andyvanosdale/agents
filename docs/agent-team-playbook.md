@@ -87,7 +87,9 @@ spec ──owner approves──▶ tests ──▶ test review ──▶ code �
 6. **Fix and re-check,** twice at most.
 7. **Merge** on the reviewer's approval, with CI green and every commit message
    on the branch following the project's rules, where the project allows the
-   coordinator to merge.
+   coordinator to merge. The merge is a squash with a message written fresh
+   from the pull request's description: what changed and why, for a later
+   reader, not the commits or the review that led there.
 
 ### Why tests are split from code
 
@@ -248,6 +250,10 @@ This project is run by a coordinator following the agent team playbook.
 Newest first. Record what changed and why, so the reasoning travels with the
 table.
 
+- **Fresh squash message.** The merge commit is written at merge time from the
+  pull request's description, as a static account for future readers. It never
+  reuses the branch's commit messages, which record how the change was reached
+  and may contain things that were later undone.
 - **After three trial units on two projects.** What they cost: project setup,
   two launches, about 213,000 tokens; a configuration change, four launches,
   about 516,000; one critical feature through the full pipeline on the strong
