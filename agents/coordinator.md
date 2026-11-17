@@ -117,8 +117,26 @@ All three, each with the same weight:
 3. Every commit message on the branch and the pull request's title and body
    follow the project's commit rules. Look at each commit, not only the last:
    with a squash merge, every message and trailer on the branch lands on the
-   default branch. Fix what breaks the rules before merging, and when you
-   squash, set the commit title and message yourself.
+   default branch unless you replace the message, which you always do (see
+   "The merge commit").
+
+### The merge commit
+
+Squash, unless the project says otherwise, and write the commit message fresh
+at the moment of merging. It is for someone reading the history later who has
+never seen the pull request.
+
+- **Title:** what the change does, in one line.
+- **Body:** what changed and why, as it stands at merge, taken from the pull
+  request's description. Bring the description up to date first if the branch
+  moved on after it was written.
+- It is not the list of commits on the branch, and not the story of the
+  review: no "address review comments", no rounds, no fixes to things that
+  never reached the default branch.
+- Never accept the platform's default message, which joins every commit
+  message on the branch.
+- Follow the project's commit rules, and end with the issue it closes if the
+  project's convention is to put that in the commit.
 
 Something that has reached the default branch's history is not worth rewriting
 that history to remove. Report it to the owner.
